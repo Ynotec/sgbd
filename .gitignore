@@ -51,7 +51,6 @@ Thumbs.db
 # Cache
 .cache/
 .eslintcache
-.prettierignore
 
 # Coverage
 coverage/
