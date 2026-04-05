@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self'"
+        />
+        <title>SGBD</title>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <nav class="menu">
+            <ul>
+                <li class="menu-item active" data-target="compteur">Compteur</li>
+                <li class="menu-item" data-target="meteo">Météo</li>
+                <li class="menu-item" data-target="secret">Secret V1</li>
+                <li class="menu-item" data-target="secret-2">Secret V2</li>
+                <li class="menu-item" data-target="settings">Settings</li>
+                <li class="menu-item" data-target="profil">Profil</li>
+            </ul>
+        </nav>
+
+        <!-- Exercice Compteur -->
+        <section id="section-compteur" class="section active">
+            <div class="card">
+                <span class="title">Compteur</span>
+                <h1 id="count" class="zero">0</h1>
+                <div class="controls">
+                    <button id="remove">−</button>
+                    <button id="clear">RAZ</button>
+                    <button id="add">+</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercices météo -->
+        <section id="section-meteo" class="section">
+            <div class="card">
+                <span class="title">Météo</span>
+                <div class="meteo-controls">
+                    <input id="meteo-input" type="text" placeholder="Taper le nom d'une ville" />
+                    <button id="meteo-refresh" class="validate-btn">Voir</button>
+                    <button id="meteo-geolocate" class="validate-btn">Me géolocaliser</button>
+                </div>
+                <p class="meteo-feedback" id="meteo-feedback"></p>
+            </div>
+        </section>
+
+        <!-- Exercice Secret V1 -->
+        <section id="section-secret" class="section">
+            <div class="card">
+                <span class="title">Secret V1 - Renderer</span>
+                <p class="secret-hint" id="secret-hint">Devine le nombre entre 1 et 100</p>
+                <div class="secret-controls">
+                    <input id="secret-input" type="number" min="1" max="100" placeholder="?" />
+                    <button id="secret-guess">Valider</button>
+                </div>
+                <p class="secret-feedback" id="secret-feedback"></p>
+                <button id="secret-reset" class="reset-btn">Rejouer</button>
+            </div>
+        </section>
+
+        <!-- Exercice Secret V2 -->
+        <section id="section-secret-2" class="section">
+            <div class="card">
+                <span class="title">Secret V2 - IPC</span>
+                <p class="secret-hint-2" id="secret-hint-2">Devine le nombre entre 1 et 100</p>
+                <div class="secret-controls-2">
+                    <input id="secret-input-2" type="number" placeholder="?" />
+                    <button id="secret-guess-2">Valider</button>
+                </div>
+                <p class="secret-feedback-2" id="secret-feedback-2"></p>
+                <button id="secret-reset-2" class="reset-btn-2">Rejouer</button>
+            </div>
+        </section>
+
+        <!-- Settings -->
+        <section id="section-settings" class="section">
+            <div class="card settings-card">
+                <span class="title">Settings</span>
+
+                <div class="settings-form">
+                    <div class="settings-group">
+                        <label class="settings-label">Nom du joueur</label>
+                        <input
+                            id="settings-player-name"
+                            type="text"
+                            class="settings-input"
+                            placeholder="Entrez votre pseudo"
+                        />
+                    </div>
+
+                    <div class="settings-group">
+                        <label class="settings-label">Plage du nombre secret</label>
+                        <div class="settings-row">
+                            <input
+                                id="settings-min-secret"
+                                type="number"
+                                class="settings-input settings-input--small"
+                                placeholder="Min"
+                            />
+                            <span class="settings-separator">→</span>
+                            <input
+                                id="settings-max-secret"
+                                type="number"
+                                class="settings-input settings-input--small"
+                                placeholder="Max"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <label class="settings-label">Nombre de vies</label>
+                        <input
+                            id="settings-max-life"
+                            type="number"
+                            class="settings-input settings-input--small"
+                            min="1"
+                            placeholder="5"
+                        />
+                    </div>
+                </div>
+
+                <p class="settings-feedback" id="settings-feedback"></p>
+                <button id="settings-save" class="settings-save-btn">Sauvegarder</button>
+            </div>
+        </section>
+
+        <!-- Profil -->
+        <section id="section-profil" class="section">
+            <div class="card profile-card">
+                <span class="title">Profil</span>
+                <div class="settings-row">
+                    <input
+                        id="profile-input"
+                        type="text"
+                        class="settings-input"
+                        placeholder="Nom du joueur"
+                    />
+                    <button id="profile-search" class="settings-save-btn">Rechercher</button>
+                </div>
+                <div id="profile-result" class="profile-result hidden">
+                    <h2 id="profile-name" class="profile-name"></h2>
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <span class="profile-stat-value win" id="profile-wins">0</span>
+                            <span class="profile-stat-label">Victoires</span>
+                        </div>
+                        <div class="profile-stat-divider"></div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-value lose" id="profile-losses">0</span>
+                            <span class="profile-stat-label">Défaites</span>
+                        </div>
+                        <div class="profile-stat-divider"></div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-value" id="profile-total">0</span>
+                            <span class="profile-stat-label">Parties</span>
+                        </div>
+                    </div>
+                    <div class="profile-history">
+                        <span class="profile-history-title">Historique</span>
+                        <ul id="profile-history-list" class="profile-history-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="./renderer.js" type="module"></script>
+    </body>
+</html>

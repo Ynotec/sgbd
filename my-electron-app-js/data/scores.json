@@ -1,0 +1,34 @@
+{
+  "John Doe": {
+    "wins": 0,
+    "losses": 2,
+    "games": [
+      {
+        "status": "lose",
+        "date": "2026-04-04T23:34:02.191Z"
+      },
+      {
+        "status": "lose",
+        "date": "2026-04-05T07:29:04.167Z"
+      }
+    ]
+  },
+  "Anthony": {
+    "wins": 2,
+    "losses": 1,
+    "games": [
+      {
+        "status": "lose",
+        "date": "2026-04-04T23:34:33.574Z"
+      },
+      {
+        "status": "win",
+        "date": "2026-04-05T07:27:01.472Z"
+      },
+      {
+        "status": "win",
+        "date": "2026-04-05T07:30:17.134Z"
+      }
+    ]
+  }
+}

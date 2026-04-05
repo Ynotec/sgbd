@@ -1,0 +1,18 @@
+{
+  "name": "counter",
+  "version": "1.0.0",
+  "description": "test sgbd",
+  "main": "src/main/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "format": "prettier --write \"src/**/*.{js,html,css}\""
+  },
+  "author": "Anthony Roncada",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron/devtron": "^2.1.1",
+    "electron": "^41.1.0",
+    "prettier": "^3.8.1"
+  }
+}
