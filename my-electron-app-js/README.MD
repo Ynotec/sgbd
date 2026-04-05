@@ -42,6 +42,7 @@ L'application s'ouvre automatiquement dans une fenêtre de bureau.
 
 ### Compteur
 Incrémente, décrémente ou remet à zéro un compteur partagé.
+
 ![alt text](./public/count.png)
 
 ### Secret v1 - renderer
@@ -49,6 +50,7 @@ Devinez un nombre secret dans un intervalle configurable.
 - Vous disposez d'un nombre de vies limité : 5.
 - Le jeu vous indique si le nombre cherché est plus grand ou plus petit.
 - En cas de victoire ou de défaite, pas de sauvegarde de la partie.
+
 ![alt text](./public/secretRenderer.png)
 
 ### Secret v2 - Ipc
@@ -56,12 +58,14 @@ Devinez un nombre secret dans un intervalle configurable.
 - Le jeu vous indique si le nombre cherché est plus grand ou plus petit.
 - En cas de victoire ou de défaite, la partie est enregistrée dans votre profil.
 Dans le screen, les settings ont été appliqué avec "1-200", "Anthony" "15 vies".
+
 ![alt text](./public/secretIpc.png)
 
 ### Météo
 Consultez la météo actuelle :
 - **Par nom de ville** : saisissez une ville dans le champ de recherche.
 - **Par géolocalisation** : autorisez l'accès à votre position pour obtenir la météo locale.
+
 ![alt text](./public/meteo.png)
 
 Données fournies par [Open-Meteo](https://open-meteo.com/) (API gratuite, aucune clé requise).
@@ -70,10 +74,12 @@ Données fournies par [Open-Meteo](https://open-meteo.com/) (API gratuite, aucun
 Consultez vos statistiques personnelles : nombre de victoires, défaites et historique des parties.
 Les scores sont sauvegardés localement dans `data/scores.json`.
 - La recherche est sensisble à la case, si "anthony" aucun profil ne sera trouvé, si pas de nom définie, le nom par défaut sera "John Doe".
+
 ![alt text](./public/profil.png)
 
 ### Paramètres
 Configurez votre nom de joueur, l'intervalle du jeu (min/max) et le nombre de vies avant de jouer pour le jeu Secret V2 IPC
+
 ![alt text](./public/settings.png)
 
 ---
