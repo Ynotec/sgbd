@@ -1,0 +1,81 @@
+.container {
+    max-width: 680px;
+    margin: 48px auto;
+    padding: 0 24px;
+    font-family: Roboto, sans-serif;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+
+.form-card {
+    margin-bottom: 24px;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+}
+
+.input-field {
+    flex: 1;
+    min-width: 0; 
+}
+
+.input-field.mat-mdc-form-field {
+    width: 100%;
+}
+
+button[mat-raised-button],
+button[mat-stroked-button] {
+    height: 48px;
+    padding: 0 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.todo-table {
+    margin-top: 25px;
+    width: 100%;
+}
+
+.mat-column-status {
+    width: 56px;
+    padding-left: 16px !important;
+}
+
+.mat-column-date {
+    width: 100px;
+    color: #888;
+    font-size: 13px;
+}
+
+tr.mat-mdc-row {
+    height: 56px;
+}
+
+tr.mat-mdc-row:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    transition: background 0.2s;
+}
+
+.done {
+    text-decoration: line-through;
+    opacity: 0.4;
+}
+
+.done-row {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.empty-row {
+    text-align: center;
+    padding: 40px !important;
+    color: #aaa;
+}
