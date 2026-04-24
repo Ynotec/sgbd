@@ -5,14 +5,22 @@
   "main": "src/main/main.js",
   "type": "module",
   "scripts": {
-    "start": "electron .",
+    "start": "npm run build:ts && npm run build:renderer && electron .",
+    "build:ts": "tsc",
+    "build:renderer": "cd src/renderer/app && npm run build",
     "format": "prettier --write \"src/**/*.{js,html,css}\""
   },
   "author": "Anthony Roncada",
   "license": "ISC",
   "devDependencies": {
     "@electron/devtron": "^2.1.1",
+    "@electron/rebuild": "^4.0.4",
+    "@types/better-sqlite3": "^7.6.13",
     "electron": "^41.1.0",
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.1",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.9.0"
   }
 }

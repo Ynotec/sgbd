@@ -1,0 +1,56 @@
+:host {
+    display: flex;
+    height: 100vh;
+}
+
+/* ── Sidebar ── */
+.menu {
+    width: 200px;
+    min-width: 200px;
+    background: #13132a;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 24px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-item {
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #94a3b8;
+    transition: background 0.15s, color 0.15s;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #e2e8f0;
+}
+
+.menu-item.active {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+}
+
+/* ── Main content ── */
+.section {
+    display: none;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+}
+
+.section.active {
+    display: flex;
+}

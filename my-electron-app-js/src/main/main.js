@@ -1,15 +1,20 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import { devtron } from '@electron/devtron'
 import path from 'path'
+
 import { fileURLToPath } from 'url'
 import MeteoApiService from '../service/MeteoApiService.js'
 import GuessService from '../service/GuessService.js'
 import ScoreService from '../service/ScoreService.js'
+import CounterService from '../../dist/service/CounterService.js'
+import DatabaseService from '../../dist/repositories/DatabaseService.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Doit être appelé au début
 devtron.install()
+
+DatabaseService.getInstance().initDb()
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -31,15 +36,15 @@ const createWindow = () => {
         return permission === 'geolocation'
     })
 
-    win.loadFile(path.join(__dirname, '../renderer/index.html'))
+    win.loadFile(path.join(__dirname, '../renderer/app/dist/app/browser/index.html'))
     win.webContents.openDevTools()
 }
 
 // IPC Handlers
-let count = 0
-ipcMain.handle('counter:add', () => ++count)
-ipcMain.handle('counter:remove', () => --count)
-ipcMain.handle('counter:clear', () => (count = 0))
+ipcMain.handle('counter:addCount', () => CounterService.getInstance().add())
+ipcMain.handle('counter:removeCount', () => CounterService.getInstance().removeCount())
+ipcMain.handle('counter:resetCount', () => CounterService.getInstance().resetCount())
+ipcMain.handle('counter:getCount', () => CounterService.getInstance().getCount())
 
 ipcMain.handle('meteo:get', async (_event, ville) => {
     return await MeteoApiService.getInstance().getGeolocationByCity(ville)
@@ -86,6 +91,10 @@ app.whenReady().then(() => {
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
+})
+
+app.on('before-quit', () => {
+    DatabaseService.getInstance().closeDb()
 })
 
 app.on('window-all-closed', () => {
