@@ -1,9 +1,13 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-
+import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card'
 
 @Component({
   selector: 'app-counter',
-  imports: [],
+  imports: [
+    MatButtonModule,
+    MatCardModule,
+  ],
   templateUrl: './counter.html',
   styleUrl: './counter.css',
 })

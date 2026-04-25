@@ -1,17 +1,9 @@
+import { ICounterApi } from "./ICounter.js"
+import { ITodoApi } from "./ITodo.js"
+
 export interface ElectronApi {
-    // Counter
-    addCount: () => Promise<{ counter: number }>
-    removeCount: () => Promise<{ counter: number }>
-    resetCount: () => Promise<{ counter: number }>
-    getCount: () => Promise<{ counter: number }>
-    
-    // Météo
-
-    // Settings
-
-    // Score
-
-    //
+  counter : ICounterApi
+  todo: ITodoApi
 }
 
 declare global {

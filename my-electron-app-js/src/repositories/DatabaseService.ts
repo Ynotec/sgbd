@@ -26,6 +26,7 @@ class DatabaseService {
     }
 
     initDb() {
+        // Counter
         this.db.exec(`
             CREATE TABLE IF NOT EXISTS Counter (
             id INTEGER PRIMARY KEY,
@@ -33,6 +34,16 @@ class DatabaseService {
             )
         `)
         this.db.prepare('INSERT OR IGNORE INTO Counter (id, value) VALUES (1, 0)').run()
+
+        // Todo
+        this.db.exec(`
+            CREATE TABLE IF NOT EXISTS Todo (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            date TEXT NOT NULL,
+            done INTEGER NOT NULL DEFAULT 0
+            )
+        `)
     }
 
     closeDb() {

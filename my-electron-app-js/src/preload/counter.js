@@ -1,8 +1,8 @@
 import { ipcRenderer } from 'electron'
 
 export default {
-    addCount: () => ipcRenderer.invoke('counter:addCount'),
-    removeCount: () => ipcRenderer.invoke('counter:removeCount'),
-    resetCount: () => ipcRenderer.invoke('counter:resetCount'),
-    getCount: () => ipcRenderer.invoke('counter:getCount'),
+    add: () => ipcRenderer.invoke('counter:addCount'),
+    remove: () => ipcRenderer.invoke('counter:removeCount'),
+    reset: () => ipcRenderer.invoke('counter:resetCount'),
+    get: () => ipcRenderer.invoke('counter:getCount'),
 }

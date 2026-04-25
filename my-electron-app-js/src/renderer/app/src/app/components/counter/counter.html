@@ -1,9 +1,16 @@
-<div class="card">
-    <span class="title">Compteur</span>
-    <span class="count" [class.negative]="count < 0">{{ count }}</span>
-    <div class="controls">
-        <button class="btn-remove" (click)="removeCount()">−</button>
-        <button class="btn-clear" (click)="clearCount()">RAZ</button>
-        <button class="btn-add" (click)="addCount()">+</button>
-    </div>
-</div>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Compteur</mat-card-title>
+    <mat-card-subtitle [class.negative]="count < 0">
+      {{ count }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <button mat-stroked-button (click)="removeCount()">−</button>
+    <button mat-stroked-button color="warn" (click)="clearCount()">RAZ</button>
+    <button mat-stroked-button (click)="addCount()">+</button>
+  </mat-card-actions>
+</mat-card>
+
+

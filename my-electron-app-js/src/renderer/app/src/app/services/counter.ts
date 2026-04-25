@@ -9,19 +9,19 @@ export class Counter {
   constructor(private electron: ElectronService) {}
 
   add(): Promise<{ counter: number }>{
-    return this.electron.getApi().addCount()
+    return this.electron.getApi().counter.add()
   }
 
   remove(): Promise<{ counter: number }>{
-    return this.electron.getApi().removeCount()
+    return this.electron.getApi().counter.remove()
   }
 
   clear(): Promise<{ counter: number }>{
-    return this.electron.getApi().resetCount()
+    return this.electron.getApi().counter.reset()
   }
 
   get(): Promise <{ counter: number }>{
-    return this.electron.getApi().getCount()
+    return this.electron.getApi().counter.get()
   }
 
 }

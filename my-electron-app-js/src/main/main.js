@@ -7,6 +7,7 @@ import MeteoApiService from '../service/MeteoApiService.js'
 import GuessService from '../service/GuessService.js'
 import ScoreService from '../service/ScoreService.js'
 import CounterService from '../../dist/service/CounterService.js'
+import TodoService from '../../dist/service/TodoService.js'
 import DatabaseService from '../../dist/repositories/DatabaseService.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -39,6 +40,13 @@ const createWindow = () => {
     win.loadFile(path.join(__dirname, '../renderer/app/dist/app/browser/index.html'))
     win.webContents.openDevTools()
 }
+
+ipcMain.handle('todo:getAll', () => TodoService.getInstance().getAll())
+ipcMain.handle('todo:add', (_event, name) => TodoService.getInstance().add(name))
+ipcMain.handle('todo:delete', (_event, id) => TodoService.getInstance().delete(id))
+ipcMain.handle('todo:edit', (_event, name, id) => TodoService.getInstance().edit(name, id))
+ipcMain.handle('todo:setDone', (_event, done, id) => TodoService.getInstance().doneTask(done, id))
+ipcMain.handle('todo:clear', () => TodoService.getInstance().clear())
 
 // IPC Handlers
 ipcMain.handle('counter:addCount', () => CounterService.getInstance().add())

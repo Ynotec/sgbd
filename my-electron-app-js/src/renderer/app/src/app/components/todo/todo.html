@@ -1,0 +1,63 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Todo</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nom de la tâche</mat-label>
+      <input matInput placeholder="Ex. Faire les guides Angular" [(ngModel)]="newTask" (keydown.enter)="addTask()" />
+      <button matSuffix mat-icon-button (click)="addTask()" [disabled]="!newTask.trim()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="todoService.todos()" class="full-width">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let todo">{{ todo.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Tâche</th>
+        <td mat-cell *matCellDef="let todo">{{ todo.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date création</th>
+        <td mat-cell *matCellDef="let todo">{{ todo.date | date:'dd/MM/yyyy HH:mm' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="done">
+        <th mat-header-cell *matHeaderCellDef>Fait</th>
+        <td mat-cell *matCellDef="let todo">
+          <mat-checkbox 
+            [checked]="todo.done === 1" 
+            (change)="toggleDone(todo.id, todo.done)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let todo">
+          <button mat-icon-button color="warn" (click)="deleteTask(todo.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-stroked-button color="warn" (click)="clearTasks()">
+      <mat-icon>delete_sweep</mat-icon>
+      Vider la liste
+    </button>
+  </mat-card-actions>
+</mat-card>
