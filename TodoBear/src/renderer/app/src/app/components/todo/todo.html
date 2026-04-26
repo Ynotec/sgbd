@@ -1,0 +1,73 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Todo</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="field-titre">
+        <mat-label>Nom de la tâche</mat-label>
+        <input matInput placeholder="Ex. Faire les guides Angular" [(ngModel)]="newTask" (keydown.enter)="addTask()" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-date">
+        <mat-label>Date d'échéance</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="newDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker" />
+        <mat-datepicker #picker />
+      </mat-form-field>
+
+      <button mat-icon-button (click)="addTask()" [disabled]="!newTask.trim()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <table mat-table [dataSource]="todoService.todos()" class="full-width">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let todo">{{ todo.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="titre">
+        <th mat-header-cell *matHeaderCellDef>Tâche</th>
+        <td mat-cell *matCellDef="let todo">{{ todo.titre }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date_echeance">
+        <th mat-header-cell *matHeaderCellDef>Échéance</th>
+        <td mat-cell *matCellDef="let todo">{{ formatDate(todo.date_echeance) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="statut">
+        <th mat-header-cell *matHeaderCellDef>Fait</th>
+        <td mat-cell *matCellDef="let todo">
+          <mat-checkbox
+            [checked]="todo.statut === 'terminé'"
+            (change)="toggleDone(todo.id, todo.statut)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let todo">
+          <button mat-icon-button color="warn" (click)="deleteTask(todo.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-stroked-button color="warn" (click)="clearTasks()">
+      <mat-icon>delete_sweep</mat-icon>
+      Vider la liste
+    </button>
+  </mat-card-actions>
+</mat-card>

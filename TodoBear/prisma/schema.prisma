@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-ts"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Liste {
+  id  Int @id @default(autoincrement())
+  titre String
+  taches Tache[]
+
+  @@map("listes")
+}
+
+model Etiquette {
+  id  Int @id @default(autoincrement())
+  nom String @unique
+  couleur String @default("#cccccc")
+  taches Tache[] @relation("TacheToEtiquette")
+
+  @@map("etiquettes")
+}
+
+model Tache {
+  id  Int @id @default(autoincrement())
+  titre String
+  description String?
+  statut String @default("à faire")
+  priorite  Int @default(2)
+  date_echeance  DateTime?
+
+  liste_id  Int
+  liste Liste @relation(fields: [liste_id], references: [id])
+  etiquettes  Etiquette[] @relation("TacheToEtiquette")
+
+  @@map("taches")
+}

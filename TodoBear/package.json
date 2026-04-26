@@ -5,12 +5,14 @@
   "description": "My Electron application description",
   "main": ".vite/build/main.js",
   "private": true,
-  "scripts": {
+"scripts": {
     "start": "electron-forge start",
+    "build:angular": "cd src/renderer/app && ng build",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx ."
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev --name init",
+    "prisma:studio": "npx prisma studio"
   },
   "keywords": [],
   "author": {
@@ -19,9 +21,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@analogjs/vite-plugin-angular": "^2.4.5",
-    "@angular/build": "^21.2.7",
-    "@angular/compiler-cli": "^21.2.8",
     "@electron-forge/cli": "^7.11.1",
     "@electron-forge/maker-deb": "^7.11.1",
     "@electron-forge/maker-rpm": "^7.11.1",
@@ -31,23 +30,22 @@
     "@electron-forge/plugin-fuses": "^7.11.1",
     "@electron-forge/plugin-vite": "^7.11.1",
     "@electron/fuses": "^1.8.0",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/electron-squirrel-startup": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^8.58.1",
-    "@typescript-eslint/parser": "^8.58.1",
-    "electron": "41.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "electron": "41.3.0",
     "eslint": "^8.57.1",
     "eslint-plugin-import": "^2.32.0",
-    "typescript": "~5.9.0",
-    "vite": "^6.4.2"
+    "prisma": "^7.8.0",
+    "typescript": "^6.0.3",
+    "vite": "^5.4.21"
   },
   "dependencies": {
-    "@angular/animations": "^21.2.8",
-    "@angular/cdk": "^21.2.6",
-    "@angular/common": "^21.2.8",
-    "@angular/core": "^21.2.8",
-    "@angular/forms": "^21.2.8",
-    "@angular/material": "^21.2.6",
-    "@angular/platform-browser": "^21.2.8",
+    "@prisma/adapter-better-sqlite3": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "better-sqlite3": "^12.9.0",
+    "dotenv": "^17.4.2",
     "electron-squirrel-startup": "^1.0.1"
   }
 }
